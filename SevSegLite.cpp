@@ -195,42 +195,42 @@ void SevSeg::setBrightness(int brightness){
 // It is overloaded for all number data types, so that floats can be handled
 // correctly.
 
-void SevSeg::setNumber(long numToShow, byte decPlaces) //long
+void SevSeg::setNumber(long numToShow) //long
 {
-  setNewNum(numToShow, decPlaces);
+  setNewNum(numToShow);
 }
 
-void SevSeg::setNumber(unsigned long numToShow, byte decPlaces) //unsigned long
+void SevSeg::setNumber(unsigned long numToShow) //unsigned long
 {
-  setNewNum(numToShow, decPlaces);
+  setNewNum(numToShow);
 }
 
-void SevSeg::setNumber(int numToShow, byte decPlaces) //int
+void SevSeg::setNumber(int numToShow) //int
 {
-  setNewNum(numToShow, decPlaces);
+  setNewNum(numToShow);
 }
 
-void SevSeg::setNumber(unsigned int numToShow, byte decPlaces) //unsigned int
+void SevSeg::setNumber(unsigned int numToShow) //unsigned int
 {
-  setNewNum(numToShow, decPlaces);
+  setNewNum(numToShow);
 }
 
-void SevSeg::setNumber(char numToShow, byte decPlaces) //char
+void SevSeg::setNumber(char numToShow) //char
 {
-  setNewNum(numToShow, decPlaces);
+  setNewNum(numToShow);
 }
 
-void SevSeg::setNumber(byte numToShow, byte decPlaces) //byte
+void SevSeg::setNumber(byte numToShow) //byte
 {
-  setNewNum(numToShow, decPlaces);
+  setNewNum(numToShow);
 }
 
-void SevSeg::setNumber(float numToShow, byte decPlaces) //float
+void SevSeg::setNumber(float numToShow) //float
 {
-  numToShow = numToShow * powersOf10[decPlaces];
+  // numToShow = numToShow * powersOf10[decPlaces];
   // Modify the number so that it is rounded to an integer correctly
   numToShow += (numToShow >= 0) ? 0.5f : -0.5f;
-  setNewNum(numToShow, decPlaces);
+  setNewNum(numToShow);
 }
 
 
@@ -238,10 +238,10 @@ void SevSeg::setNumber(float numToShow, byte decPlaces) //float
 /******************************************************************************/
 // Changes the number that will be displayed.
 
-void SevSeg::setNewNum(long numToShow, byte decPlaces){
+void SevSeg::setNewNum(long numToShow){
   byte digits[numDigits];
-  findDigits(numToShow, decPlaces, digits);
-  setDigitCodes(digits, decPlaces);
+  findDigits(numToShow, digits);
+  setDigitCodes(digits);
 }
 
 
@@ -250,7 +250,7 @@ void SevSeg::setNewNum(long numToShow, byte decPlaces){
 // Decides what each digit will display.
 // Enforces the upper and lower limits on the number to be displayed.
 
-void SevSeg::findDigits(long numToShow, byte decPlaces, byte digits[]) {
+void SevSeg::findDigits(long numToShow, byte digits[]) {
   static const long maxNum = powersOf10[numDigits] - 1;
   static const long minNum = -(powersOf10[numDigits - 1] - 1);
 
@@ -279,7 +279,7 @@ void SevSeg::findDigits(long numToShow, byte decPlaces, byte digits[]) {
     }
 
     // Find unnnecessary leading zeros and set them to BLANK
-    for (digitNum = 0 ; digitNum < (numDigits - 1 - decPlaces) ; digitNum++){
+    for (digitNum = 0 ; digitNum < (numDigits - 1) ; digitNum++){
       if (digits[digitNum] == 0) {
         digits[digitNum] = BLANK;
       }
@@ -297,7 +297,7 @@ void SevSeg::findDigits(long numToShow, byte decPlaces, byte digits[]) {
 /******************************************************************************/
 // Sets the 'digitCodes' that are required to display the input numbers
 
-void SevSeg::setDigitCodes(byte digits[], byte decPlaces) {
+void SevSeg::setDigitCodes(byte digits[]) {
 
   // The codes below indicate which segments must be illuminated to display
   // each number.
@@ -319,9 +319,9 @@ void SevSeg::setDigitCodes(byte digits[], byte decPlaces) {
   for (byte digitNum = 0 ; digitNum < numDigits ; digitNum++) {
     digitCodes[digitNum] = digitCodeMap[digits[digitNum]];
     // Set the decimal place segment
-    if (digitNum == numDigits - 1 - decPlaces) {
-     digitCodes[digitNum] |= B10000000;
-    }
+    // if (digitNum == numDigits - 1 - decPlaces) {
+     // digitCodes[digitNum] |= B10000000;
+    // }
   }
 }
 
