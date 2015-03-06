@@ -1,5 +1,16 @@
-SevSeg
+SevSegLite - Lite version of SevSeg
 ======
+ modified 2015 maxeng
+ Lite version is omitted following features:
+	- decimal point support
+	- internal current-limiting resistors support
+ also number of digit support is only 4.
+  
+ COMMON-CATHODE is default type of display. No need set option. (ANODE type must be set option.)
+ setNumber() make auto refresh. no need refresh().
+ 
+ --- original document is below ---------------------------------------------
+ 
  Copyright 2014 Dean Reading
 
  Licensed under the Apache License, Version 2.0 (the "License");
