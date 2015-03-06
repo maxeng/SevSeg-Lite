@@ -11,6 +11,7 @@ SevSegLite - Lite version of SevSeg
  also number of digit support is only 4.
   
  COMMON-CATHODE is default type of display. No need set option. (ANODE type must be set option.)
+ 
  setNumber() make auto refresh. no need refresh().
  
  --- original document is below ---------------------------------------------
