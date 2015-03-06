@@ -1,6 +1,7 @@
 SevSegLite - Lite version of SevSeg
 ======
  modified 2015 maxeng
+ 
  Lite version is omitted following features:
 	- decimal point support
 	- internal current-limiting resistors support
