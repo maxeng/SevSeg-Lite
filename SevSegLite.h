@@ -1,4 +1,15 @@
-/* SevSeg-Lite Library
+/* SevSegLite Library
+ 
+ modified 2015 maxeng
+ Lite version is omitted following features:
+	- decimal point support
+	- internal current-limiting resistors support
+ also number of digit support is only 4.
+  
+ COMMON-CATHODE is default type of display. No need set option. (ANODE type must be set option.)
+ setNumber() make auto refresh. no need refresh().
+ 
+ --- original document is below ---------------------------------------------
  
  Copyright 2014 Dean Reading
  
@@ -21,14 +32,10 @@
  See the included readme for instructions.
  */
 
-// If you use current-limiting resistors on your segment pins instead of the
-// digit pins, then change the '0' in the line below to a '1'
-#define RESISTORS_ON_SEGMENTS 0
-#define MAXNUMDIGITS 8 //Increase this number to support larger displays
+#define MAXNUMDIGITS 4 //Increase this number to support larger displays
 
-
-#ifndef SevSeg_h
-#define SevSeg_h
+#ifndef SevSegLite_h
+#define SevSegLite_h
 
 #if defined(ARDUINO) && ARDUINO >= 100
 #include "Arduino.h"
@@ -41,13 +48,13 @@
 #define COMMON_ANODE 1
 
 
-class SevSeg
+class SevSegLite
 {
 public:
-  SevSeg();
+  SevSegLite();
 
-  void refreshDisplay();
   void begin(byte hardwareConfig, byte numDigitsIn, byte digitPinsIn[], byte segmentPinsIn[]);
+  void begin(byte numDigitsIn, byte digitPinsIn[], byte segmentPinsIn[]);
   void setBrightness(int brightnessIn); // A number from 0..100
 
   void setNumber(long numToShow);
@@ -57,7 +64,9 @@ public:
   void setNumber(char numToShow);
   void setNumber(byte numToShow);
   void setNumber(float numToShow);
-
+  
+  void refreshDisplay(); //setNumber() make auto refresh
+  
 private:
   void setNewNum(long numToShow);
   void findDigits(long numToShow, byte nums[]);
@@ -73,5 +82,5 @@ private:
 
 };
 
-#endif //SevSeg_h
+#endif //SevSegLite_h
 /// END ///
