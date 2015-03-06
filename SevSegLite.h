@@ -39,10 +39,6 @@
 // Use defines to link the hardware configurations to the correct numbers
 #define COMMON_CATHODE 0
 #define COMMON_ANODE 1
-#define N_TRANSISTORS 2
-#define P_TRANSISTORS 3
-#define NP_COMMON_CATHODE 1
-#define NP_COMMON_ANODE 0
 
 
 class SevSeg
