@@ -1,4 +1,4 @@
-/* SevSeg Library
+/* SevSeg-Lite Library
  
  Copyright 2014 Dean Reading
  
@@ -54,22 +54,22 @@ public:
   void begin(byte hardwareConfig, byte numDigitsIn, byte digitPinsIn[], byte segmentPinsIn[]);
   void setBrightness(int brightnessIn); // A number from 0..100
 
-  void setNumber(long numToShow, byte decPlaces);
-  void setNumber(unsigned long numToShow, byte decPlaces);
-  void setNumber(int numToShow, byte decPlaces);
-  void setNumber(unsigned int numToShow, byte decPlaces);
-  void setNumber(char numToShow, byte decPlaces);
-  void setNumber(byte numToShow, byte decPlaces);
-  void setNumber(float numToShow, byte decPlaces);
+  void setNumber(long numToShow);
+  void setNumber(unsigned long numToShow);
+  void setNumber(int numToShow);
+  void setNumber(unsigned int numToShow);
+  void setNumber(char numToShow);
+  void setNumber(byte numToShow);
+  void setNumber(float numToShow);
 
 private:
-  void setNewNum(long numToShow, byte decPlaces);
-  void findDigits(long numToShow, byte decPlaces, byte nums[]);
-  void setDigitCodes(byte nums[], byte decPlaces);
+  void setNewNum(long numToShow);
+  void findDigits(long numToShow, byte nums[]);
+  void setDigitCodes(byte nums[]);
 
   boolean digitOn,digitOff,segmentOn,segmentOff;
   byte digitPins[MAXNUMDIGITS];
-  byte segmentPins[8];
+  byte segmentPins[7]; //no decimal
   byte numDigits;
   byte digitCodes[MAXNUMDIGITS];
   int ledOnTime;
